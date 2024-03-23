@@ -71,7 +71,7 @@ t = [ testF(newR []),
       freeCellsS (stackS shortLS cM2) == -1,
       netS (stackS shortLS cM2) > 20,
       not (holdsS emptyS cR1 ruta_corta),
-      not (holdsS shortS cM1 ruta_corta), --arreglar
+      testF (not (holdsS shortS cM1 ruta_corta)), --arreglaDO
       not (holdsS shortS cR2 ruta_corta),
       holdsS shortS cR1 ruta_corta,
       popS longXXLS paris == longXLS, 
@@ -83,6 +83,6 @@ t = [ testF(newR []),
       freeCellsV (loadV shortV cR1) == 0, 
       not (testF (newV 0 0 ruta_corta)), 
       testF (loadV shortV cR2), 
-      testF (loadV shortV cP1), --arreglar
+      testF (loadV shortV cP1), --arreglaDOs
       testF (loadV shortLV cR1) 
       ]

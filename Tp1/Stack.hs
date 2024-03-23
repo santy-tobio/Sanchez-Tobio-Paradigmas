@@ -27,7 +27,7 @@ netS (Sta apilados capacity) = sum (map netC apilados)
 
 holdsS :: Stack -> Container -> Route -> Bool -- indica si la pila puede aceptar el contenedor considerando las ciudades en la ruta
 holdsS (Sta apilados capacity) container ruta = validoEnLaRuta && validoEnPeso && validoEnCeldas
-                where validoEnLaRuta = isEmptyS apilados || inOrderR ruta (destinationC container) (destinationC (last apilados))
+                where validoEnLaRuta = isEmptyS apilados && (inOrderR ruta (destinationC container) (destinationC container)) || inOrderR ruta (destinationC container) (destinationC (last apilados)) 
                       validoEnPeso = netS (Sta (apilados ++ [container]) capacity) <= 20
                       validoEnCeldas = freeCellsS (Sta (apilados ++ [container]) capacity) >= 0
 
