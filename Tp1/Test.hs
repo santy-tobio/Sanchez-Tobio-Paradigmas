@@ -44,6 +44,9 @@ shortV = newV 1 1 ruta_corta
 mediumV = newV 2 2 ruta_larga
 
 shortLV = loadV shortV cM1
+
+mediumLV = loadV mediumV cM1
+mediumXLV = loadV mediumLV cP1
  
 
 t = [ testF(newR []), 
@@ -84,5 +87,7 @@ t = [ testF(newR []),
       not (testF (newV 0 0 ruta_corta)), 
       testF (loadV shortV cR2), 
       testF (loadV shortV cP1), --arreglaDOs
-      testF (loadV shortLV cR1) 
+      testF (loadV shortLV cR1), 
+      unloadV mediumLV mdq == mediumV,
+      unloadV mediumLV paris /= mediumV
       ]
