@@ -1,15 +1,9 @@
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Eta reduce" #-}
 module Vessel ( Vessel, newV, freeCellsV, loadV, unloadV, netV )
  where
 
 import Container
 import Stack
 import Route
-import Foreign (free)
-import Data.ByteString (elemIndex)
-import Control.Monad.Cont (cont)
-import Data.Binary.Get (isEmpty)
 
 data Vessel = Ves [ Stack ] Route deriving (Eq, Show)
 

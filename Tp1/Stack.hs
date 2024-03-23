@@ -1,14 +1,8 @@
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Eta reduce" #-}
-{-# HLINT ignore "Redundant bracket" #-}
 module Stack ( Stack, newS, freeCellsS, stackS, netS, holdsS, popS )
  where
 
 import Route
 import Container
-import Data.Binary.Get (isEmpty)
-import Control.Applicative (Alternative(empty))
-import Distribution.FieldGrammar (List)
 
 data Stack = Sta [ Container ] Int deriving (Eq, Show)
 
@@ -26,8 +20,9 @@ netS :: Stack -> Int                          -- responde el peso neto de los co
 netS (Sta apilados capacity) = sum (map netC apilados)
 
 holdsS :: Stack -> Container -> Route -> Bool -- indica si la pila puede aceptar el contenedor considerando las ciudades en la ruta
-holdsS (Sta apilados capacity) container ruta = validoEnLaRuta && validoEnPeso && validoEnCeldas
-                where validoEnLaRuta = (isEmptyS apilados && (inOrderR ruta (destinationC container) (destinationC container))) || inOrderR ruta (destinationC container) (destinationC (last apilados)) 
+holdsS (Sta apilados capacity) container ruta = estaEnRuta && validoEnLaRuta && validoEnPeso && validoEnCeldas
+                where estaEnRuta = inOrderR ruta (destinationC container) (destinationC container)
+                      validoEnLaRuta = isEmptyS apilados || inOrderR ruta (destinationC container) (destinationC (last apilados))
                       validoEnPeso = netS (Sta (apilados ++ [container]) capacity) <= 20
                       validoEnCeldas = freeCellsS (Sta (apilados ++ [container]) capacity) >= 0
 
