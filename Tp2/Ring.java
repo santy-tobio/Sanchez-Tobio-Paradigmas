@@ -5,20 +5,19 @@ public class Ring {
     public Ring(){
         current = null;
     }
+
     public Ring next() {
-        if (current == null)
-        {
-            throw  new RuntimeException("el anillo esta vacio");
-        }
+        emptyRing("el anillo esta vacio");
         current = current.next;
         return this;
     }
 
+    private void emptyRing(String vacio) {
+        new EmptyNode();
+    }
+
     public Object current() {
-        if (current == null)
-                {
-                    throw  new RuntimeException("el anillo esta vacio");
-                }
+        emptyRing("el anillo esta vacio");
         return current.data;
     }
 
@@ -40,10 +39,7 @@ public class Ring {
     }
 
     public Ring remove() {
-        if (current == null)
-        {
-            throw  new RuntimeException("");
-        }
+        emptyRing("");
         if (current.next == current)
         {
             current = null;
@@ -60,6 +56,8 @@ public class Ring {
         }
         return this;
     }
+
+
 
     private static class Node {
         Object data;
