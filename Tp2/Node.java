@@ -2,11 +2,12 @@ package anillo;
 
 public abstract class Node {
 
-    public Node() {
+    static Node EmptyNode() {
+        return new EmptyNode();
     }
-
-    public abstract Object nextNode();
-    public abstract Object currentNode();
-    public abstract Object dataInNode();
+    public abstract Node next();
+    public abstract Object current();
+    public abstract Node add(Object data);
+    public abstract Node remove();
 
 }

@@ -2,22 +2,10 @@ package anillo;
 
 public class EmptyNode extends Node {
 
-    public EmptyNode() {
-        super();
+    public Node next() {throw new  RuntimeException("el anillo esta vacio");}
+    public Object current() { throw new  RuntimeException("el anillo esta vacio");}
+    public Node add(Object data) {
+        return new NotEmptyNode(data);
     }
-
-    public Object nextNode() {
-        throw new RuntimeException("el anillo esta vacio");
-    }
-
-    @Override
-    public Object currentNode() {
-        return null;
-    }
-
-    @Override
-    public Object dataInNode() {
-        return null;
-    }
-
+    public Node remove() { throw new RuntimeException("el anillo esta vacio");}
 }

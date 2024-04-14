@@ -1,28 +1,24 @@
 package anillo;
 
 public class NotEmptyNode extends Node {
-
-    NotEmptyNode(Object data) {
-        super();
+    public NotEmptyNode (Object data) {
+        this.data = data;
+        next = this;
     }
-
-    @Override
-    public Object nextNode() {
-        return null;
-    }
-
-    @Override
-    public Object currentNode() {
-        return null;
-    }
-
-    @Override
-    public Object dataInNode() {
-        return null;
-    }
-
-    public Object next(){
-        return this.next();
-    }
-
+    public Node next() {return this.next;}
+    public Object current() {return this.data;}
+    public Node add(Object newData) {
+        NotEmptyNode newNode = new NotEmptyNode(data);
+        Object value = this.current();
+        this.data = newData;
+        newNode.next = this.next;
+        this.next = newNode;
+        newNode.data = value;
+        return this;
+        }
+    public Node remove() {
+       return (this.next == this) ? Node.EmptyNode() : this.next;}
+    private Object data;
+    private Node next;
 }
+
