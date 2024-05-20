@@ -2,8 +2,8 @@ package drones;
 
 public class DronSondaDesplegada extends Dron{
 
-    public DronSondaDesplegada(int velocidad, String direccion, boolean sondaDesplegada) {
-        super(velocidad, direccion, sondaDesplegada);
+    public DronSondaDesplegada(int velocidad, boolean sondaDesplegada, Brujula brujula) {
+        super(velocidad, sondaDesplegada, brujula);
         this.sondaDesplegada = true;
     }
 

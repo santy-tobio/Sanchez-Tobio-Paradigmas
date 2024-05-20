@@ -24,12 +24,14 @@ public class Dron {
     int velocidad;
     String direccion;
     boolean sondaDesplegada;
+    Brujula brujula;
 
-    public Dron(int velocidad, String direccion, boolean sondaDesplegada) {
+    public Dron(int velocidad, boolean sondaDesplegada, Brujula brujula) {
 
         this.velocidad = velocidad;
-        this.direccion = direccion;
         this.sondaDesplegada = sondaDesplegada;
+        this.brujula = brujula;
+        this.direccion = brujula.direccion;
 
     }
 

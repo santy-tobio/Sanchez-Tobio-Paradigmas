@@ -2,11 +2,10 @@ package drones;
 
 public class DronSondaNoDesplegada extends Dron{
 
-
-
-    public DronSondaNoDesplegada(int velocidad, String direccion, boolean sondaDesplegada) {
-        super(velocidad, direccion, sondaDesplegada);
+    public DronSondaNoDesplegada(int velocidad, boolean sondaDesplegada, Brujula brujula) {
+        super(velocidad, sondaDesplegada, brujula);
         this.sondaDesplegada = false;
+        this.direccion = brujula.direccion;
     }
 
     public void incrementarVelocidad() {
@@ -21,27 +20,13 @@ public class DronSondaNoDesplegada extends Dron{
     //double dispatchear ambas rotaciones
     //
     public void rotarIzquierda() {
-        if (this.direccion.equals("N")) {
-            this.direccion = "O";
-        } else if (this.direccion.equals("O")) {
-            this.direccion = "S";
-        } else if (this.direccion.equals("S")) {
-            this.direccion = "E";
-        } else if (this.direccion.equals("E")) {
-            this.direccion = "N";
-        }
+        brujula = brujula.girarIzquierda();
+        this.direccion = brujula.direccion;
     }
 
     public void rotarDerecha() {
-        if (this.direccion.equals("N")) {
-            this.direccion = "E";
-        } else if (this.direccion.equals("E")) {
-            this.direccion = "S";
-        } else if (this.direccion.equals("S")) {
-            this.direccion = "O";
-        } else if (this.direccion.equals("O")) {
-            this.direccion = "N";
-        }
+        brujula = brujula.girarDerecha();
+        this.direccion = brujula.direccion;
     }
 
     public void desplegarSonda() {
