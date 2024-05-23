@@ -1,85 +1,36 @@
 package drones;
-
-//Los comandos son:
-//        - 'i' que le indica al Axiom incrementar la velocidad.
-//        - 's' que le indica al Axiom disminuir la velocidad.
-//        - 'l' que le indica al Axiom rotar 90 grados a izquierda.
-//- 'r' que le indica al Axiom rotar 90 grados a derecha.
-//- 'd' que le indica al Axiom desplegar la sonda.
-//        - 'f' que le indica al Axiom recuperar la sonda.
-
-
-/*
-* para implementar polimorfismo:
-* - dron con sonda desplegada
-* - dron con sonda no desplegada
-*
-* y a partir de estos dos tipos de dron, implementar los comandos
-*
-*
-* */
-
 public class Dron {
+    private Sonda sonda;
+    private int velocidad;
+    private Brujula direccion;
 
-    int velocidad;
-    String direccion;
-    boolean sondaDesplegada;
-    Brujula brujula;
-
-    public Dron(int velocidad, boolean sondaDesplegada, Brujula brujula) {
-
-        this.velocidad = velocidad;
-        this.sondaDesplegada = sondaDesplegada;
-        this.brujula = brujula;
-        this.direccion = brujula.direccion;
-
+    public Dron() {
+        this.sonda = new SondaNoDesplejada();
+        this.velocidad = 0;
+        this.direccion = new BrujulaAlNorte();
     }
 
     public void incrementarVelocidad() {
+        sonda.incrementarVelocidad(this);
     }
 
     public void disminuirVelocidad() {
+        sonda.disminuirVelocidad(this);
     }
 
     public void rotarIzquierda() {
+        sonda.rotarIzquierda(this);
     }
 
     public void rotarDerecha() {
+        sonda.rotarDerecha(this);
     }
 
     public void desplegarSonda() {
+        sonda.desplegar(this);
     }
 
     public void recuperarSonda() {
+        sonda.recuperar(this);
     }
-
-    public void ejecutarComando(String comando) {
-
-        switch (comando) {
-            case "i":
-                incrementarVelocidad();
-                break;
-            case "s":
-                disminuirVelocidad();
-                break;
-            case "l":
-                rotarIzquierda();
-                break;
-            case "r":
-                rotarDerecha();
-                break;
-            case "d":
-                desplegarSonda();
-                break;
-            case "f":
-                recuperarSonda();
-                break;
-            default:
-                throw new RuntimeException("comando no reconocido");
-        }
-
-    }
-
 }
-
-
