@@ -1,11 +1,13 @@
 package drones;
 
-public interface Sonda {
-    void incrementarVelocidad(Dron dron);
-    void disminuirVelocidad(Dron dron);
-    void  deternerse(Dron dron);
-    void rotarIzquierda(Dron dron);
-    void rotarDerecha(Dron dron);
-    void desplegar(Dron dron);
-    void recuperar(Dron dron);
+public abstract class Sonda {
+
+    public Dron dron;
+    abstract void incrementarVelocidad(Dron dron);
+    abstract void disminuirVelocidad(Dron dron);
+    abstract void deternerse(Dron dron);
+    abstract void rotarIzquierda(Dron dron);
+    abstract void rotarDerecha(Dron dron);
+    abstract void desplegar(Dron dron);
+    abstract void recuperar(Dron dron);
 }
