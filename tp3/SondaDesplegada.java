@@ -13,22 +13,17 @@ public class SondaDesplegada extends Sonda{
         }
     }
 
-    public void deternerse(Dron dron) {
-        // esto nos va a costar otro if
-    }
+    public void deternerse(Dron dron) {throw new IllegalStateException("No se puede detener con la sonda desplegada");}
 
-    public void rotarIzquierda(Dron dron) {
-        dron.setDireccion(dron.getDireccion().girarIzquierda());
-    }
-    public void rotarDerecha(Dron dron) {
-        dron.setDireccion(dron.getDireccion().girarDerecha());
-    }
+    public void rotarIzquierda(Dron dron) {errorAlRotar();}
 
-    public void desplegar(Dron dron) {
-        dron.setSonda(new SondaDesplegada()); //deberiamos poner un if?
-    }
+    public void rotarDerecha(Dron dron) {errorAlRotar();}
 
-    public void recuperar(Dron dron) {
-        dron.setSonda(new SondaNoDesplegada()); //deberiamos poner un if?
+    public void desplegar(Dron dron) {throw new IllegalStateException("La sonda ya está desplegada") ;}
+
+    public void recuperar(Dron dron) {dron.setSonda(new SondaNoDesplegada());} //deberiamos poner un if?
+
+    private static void errorAlRotar() {
+        throw new IllegalStateException("No se puede rotar con la sonda desplegada");
     }
 }

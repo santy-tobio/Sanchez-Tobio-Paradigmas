@@ -1,30 +1,37 @@
 package drones;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Dron {
     private Sonda sonda;
     private int velocidad;
-    private Brujula direccion;
+    private Brujula brujula;
+    //crea un stream para mapear los comandos con sus letras
+    private Map<String, Runnable> comandos = new HashMap<>();
 
     public Dron() {
         this.sonda = new SondaNoDesplegada();
         this.velocidad = 0;
-        this.direccion = new BrujulaAlNorte();
+        this.brujula = new BrujulaAlNorte();
     }
 
     public void setSonda(Sonda sonda) {
         this.sonda = sonda;
     }
 
-    public void setDireccion(Brujula direccion) {
-        this.direccion = direccion;
+    public void setBrujula(Brujula brujula) {
+        this.brujula = brujula;
+    }
+
+    public Brujula getBrujula() {
+        return brujula;
     }
 
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
 
-    public Brujula getDireccion() {
-        return direccion;
-    }
 
     public int getVelocidad() {
         return velocidad;
@@ -38,7 +45,9 @@ public class Dron {
         sonda.disminuirVelocidad(this);
     }
 
-    public void deternerse() {
+
+    // ver si tiene sentido crear una funcion para detenerse si esto va apara el manejo de excepciones
+    public void detenerse() {
         sonda.deternerse(this);
     }
 
@@ -58,6 +67,10 @@ public class Dron {
         sonda.recuperar(this);
     }
 
-    //acá ahi que implementar los comandos 
+    //acá ahi que implementar los comandos
+    public void ejecutarComando(String comando) {
+    }
+
+
 }
 
