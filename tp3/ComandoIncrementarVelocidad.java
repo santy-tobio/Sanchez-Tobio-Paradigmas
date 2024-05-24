@@ -8,8 +8,8 @@ public class ComandoIncrementarVelocidad extends Comando {
         return this.comandoAEjecutar.equals(comando);
     }
 
-    public void ejecutarComando(Dron dron) {
-        dron.incrementarVelocidad();
+    public void ejecutarComando() {
+
     }
 
 }

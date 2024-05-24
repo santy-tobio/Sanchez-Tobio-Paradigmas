@@ -1,6 +1,6 @@
 package drones;
 
-public abstract class ComandoDeternerse extends Comando {
+public class ComandoDeternerse extends Comando {
 
         private String comandoAEjecutar = "s";
 

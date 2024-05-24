@@ -1,6 +1,6 @@
 package drones;
 
-public abstract class ComandoDisminuirVelocidad extends Comando {
+public class ComandoDisminuirVelocidad extends Comando {
 
         private String comandoAEjecutar = "d";
 

@@ -1,6 +1,6 @@
 package drones;
 
-public abstract class ComandoRecuperar extends Comando {
+public class ComandoRecuperar extends Comando {
 
         private String comandoAEjecutar = "r";
 

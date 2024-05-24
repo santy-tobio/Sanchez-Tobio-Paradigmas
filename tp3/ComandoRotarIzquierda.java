@@ -1,6 +1,6 @@
 package drones;
 
-public abstract class ComandoRotarIzquierda extends Comando {
+public class ComandoRotarIzquierda extends Comando {
 
         private String comandoAEjecutar = "i";
 
