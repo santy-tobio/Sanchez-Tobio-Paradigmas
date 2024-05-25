@@ -2,10 +2,14 @@ package drones;
 
 public class ControlVelocidad {
 
-    // haz que esta clase consulte a la clase de sonda si es posible incrementar la velocidad
-    public void incrementarVelocidad(Axiom axiom) {
-        axiom.getSonda().incrementarVelocidad(axiom);
+    int velocidad = 0;
+
+    public void incrementarVelocidad() {
+        velocidad++;
     }
 
+    public void disminuirVelocidad() {
+        velocidad--;
+    }
 
 }

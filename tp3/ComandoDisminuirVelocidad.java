@@ -2,13 +2,12 @@ package drones;
 
 public class ComandoDisminuirVelocidad extends Comando {
 
-        private String comandoAEjecutar = "d";
+    public boolean ejecutaElComando(String comando) {
+        return false;
+    }
 
-        public boolean ejecutaElComando(String comando) {
-            return this.comandoAEjecutar.equals(comando);
-        }
+    public void ejecutarComando() {
+        axiom.getControlVelocidad().disminuirVelocidad();
+    }
 
-        public void ejecutarComando(Dron dron) {
-            dron.disminuirVelocidad();
-        }
 }

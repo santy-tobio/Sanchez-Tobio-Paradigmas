@@ -6,6 +6,7 @@ import java.util.Arrays;
 //falta agregar el handleo correcto en cada clase
 
 public abstract class Comando {
+
     public Axiom axiom;
     public String comando;
     private static ArrayList<Comando> comandos = new ArrayList<Comando>(Arrays.asList(

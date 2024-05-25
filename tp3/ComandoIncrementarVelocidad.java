@@ -9,7 +9,8 @@ public class ComandoIncrementarVelocidad extends Comando {
     }
 
     public void ejecutarComando() {
-
+        axiom.getControlVelocidad().incrementarVelocidad()
+        ;
     }
 
 }
