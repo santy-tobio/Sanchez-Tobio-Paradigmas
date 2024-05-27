@@ -1,28 +1,36 @@
 package drones;
 
-public class Axiom {
+import java.util.Queue;
 
-    private ControlVelocidad controlVelocidad = new ControlVelocidad();
-    private Brujula controlBrujula = new BrujulaAlNorte();
-    private Sonda controlSonda = new SondaNoDesplegada();
+public class Axiom {
+    private Brujula direccion = new BrujulaAlNorte();
+    private Sonda sonda = new SondaNoDesplegada();
+    private Velocidad velocidad = new VelocidadNula();
 
     public void recibirMensaje(String mensaje) {
-        Comando.ejecucion(mensaje, this);
+        Comando.procesarComandos(mensaje, this);
     }
 
-    public Sonda getControlSonda() {
-        return controlSonda;
+    public void setVelocidad(Velocidad velocidad) {
+        this.velocidad = velocidad;
     }
 
-    public ControlVelocidad getControlVelocidad() {
-        return controlVelocidad;
+    public Velocidad getVelocidad() {return velocidad;}
+
+    public void setSonda(Sonda sonda) {
+        this.sonda = sonda;
     }
 
-    public Brujula getControlBrujula() {
-        return controlBrujula;
+    public Sonda getSonda() {
+        return sonda;
     }
 
+    public void setDireccion(Brujula brujula) {
+        this.direccion = brujula;
+    }
+
+    public Brujula getDireccion() {
+        return direccion;
+    }
 
 }
-
-

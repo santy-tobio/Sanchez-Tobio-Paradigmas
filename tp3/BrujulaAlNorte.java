@@ -1,17 +1,10 @@
 package drones;
 
-public class BrujulaAlNorte extends Brujula {
-    
-    public BrujulaAlNorte() {
-        super("N");
-    }
+public class BrujulaAlNorte extends  Brujula{
 
-    public Brujula girarDerecha() {
-        return new BrujulaAlEste();
-    }
+    public BrujulaAlNorte() {super("Norte");}
 
-    public Brujula girarIzquierda() {
-        return new BrujulaAlOeste();
-    }
-    
+    public Brujula girarDerecha() {return new BrujulaAlEste();}
+
+    public Brujula girarIzquierda() {return new BrujulaAlOeste();}
 }

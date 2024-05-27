@@ -1,45 +1,30 @@
 package drones;
 
-public class SondaNoDesplegada extends Sonda{
-
-    void ejecutarComando() {
+public class SondaNoDesplegada extends Sonda {
+    public void incrementarVelocidad(Axiom axiom) {
+        axiom.getVelocidad().incrementarVelocidad(axiom);
     }
 
-    boolean estaDesplegada() {
-        return false;
+    public void disminuirVelocidad(Axiom axiom) {
+        axiom.getVelocidad().disminuirVelocidad(axiom);
     }
 
-    //
+    public void girarIzquierda(Axiom axiom) {
+        axiom.setDireccion(axiom.getDireccion().girarIzquierda());
+    }
 
-//    public void incrementarVelocidad(Axiom axiom) {; //
-//    }
-//
-//    public void disminuirVelocidad(Axiom axiom) {
-//        if (axiom.getVelocidad() > 0) {
-//            axiom.setVelocidad(axiom.getVelocidad() - 1); //
-//        } else {
-//            throw new IllegalStateException("La velocidad no puede ser menor a 0");
-//        }
-//    }
-//
-//    public void rotarIzquierda(Axiom axiom) {
-//        axiom.getBrujula().girarIzquierda();
-//    }
-//
-//    public void rotarDerecha(Axiom axiom) {
-//        axiom.getBrujula().girarDerecha();
-//    }
-//
-//    public void desplegar(Axiom axiom) {
-//        axiom.setSonda(new SondaDesplegada());
-//    }
-//
-//    public void recuperar(Axiom axiom) {
-//        throw new IllegalStateException("La sonda ya está en estado no desplegado");
-//    }
-//
-//    public void deternerse(Axiom axiom) {
-//        axiom.setVelocidad(0);
-//    }//
+    public void girarDerecha(Axiom axiom) {
+        axiom.setDireccion(axiom.getDireccion().girarDerecha());
+    }
 
+    public void desplegarSonda(Axiom axiom) {
+        if(axiom.getVelocidad().velocidad > 0){
+            axiom.setSonda(new SondaDesplegada());
+        }
+        else{
+            throw new IllegalStateException("La sonda solo se puede desplegar mientras se avanza");
+        }
+    }
+
+    public void recuperarSonda(Axiom axiom) {}
 }

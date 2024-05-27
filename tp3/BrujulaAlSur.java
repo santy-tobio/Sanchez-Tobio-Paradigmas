@@ -3,7 +3,7 @@ package drones;
 public class BrujulaAlSur extends Brujula {
 
     public BrujulaAlSur() {
-        super("S");
+        super("Sur");
     }
 
     public Brujula girarDerecha() {

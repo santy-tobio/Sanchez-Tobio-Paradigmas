@@ -1,20 +1,10 @@
 package drones;
 
 public abstract class Sonda {
-
-    public Axiom axiom;
-
-    abstract boolean estaDesplegada();
-
-//    abstract void incrementarVelocidad(Axiom axiom);
-//    abstract void disminuirVelocidad(Axiom axiom);
-//    abstract void deternerse(Axiom axiom);
-//    abstract void rotarIzquierda(Axiom axiom);
-//    abstract void rotarDerecha(Axiom axiom);
-//    abstract void desplegar(Axiom axiom);
-//    abstract void recuperar(Axiom axiom);
-
-    abstract void ejecutarComando();
-
-
+    public abstract void incrementarVelocidad(Axiom axiom);
+    public abstract void disminuirVelocidad(Axiom axiom);
+    public abstract void girarIzquierda(Axiom axiom);
+    public abstract void girarDerecha(Axiom axiom);
+    public abstract void desplegarSonda(Axiom axiom);
+    public abstract void recuperarSonda(Axiom axiom);
 }

@@ -1,29 +1,34 @@
 package drones;
 
-public class SondaDesplegada extends Sonda{
-    public void incrementarVelocidad(Dron dron) {
-        dron.setVelocidad(dron.getVelocidad() + 1);
+public class SondaDesplegada extends Sonda {
+
+    public void incrementarVelocidad(Axiom axiom) {
+        axiom.getVelocidad().incrementarVelocidad(axiom);
     }
 
-    public void disminuirVelocidad(Dron dron) {
-        if (dron.getVelocidad() > 0) {
-            dron.setVelocidad(dron.getVelocidad() - 1);
-        } else {
-            throw new IllegalStateException("La velocidad no puede ser menor a 0");
+    public void disminuirVelocidad(Axiom axiom) {
+        if(axiom.getVelocidad().velocidad == 1)
+        {
+            throw new IllegalStateException("Error catastrofico");
+        }
+        else {
+            axiom.getVelocidad().disminuirVelocidad(axiom);
         }
     }
 
-    public void deternerse(Dron dron) {throw new IllegalStateException("No se puede detener con la sonda desplegada");}
+    public void girarIzquierda(Axiom axiom) {
+        throw new IllegalStateException("Error catastrofico");
+    }
 
-    public void rotarIzquierda(Dron dron) {errorAlRotar();}
+    public void girarDerecha(Axiom axiom) {
+        throw new IllegalStateException("Error catastrofico");
+    }
 
-    public void rotarDerecha(Dron dron) {errorAlRotar();}
+    public void desplegarSonda(Axiom axiom) {
+        throw new IllegalStateException("La sonda ya está desplegada");
+    }
 
-    public void desplegar(Dron dron) {throw new IllegalStateException("La sonda ya está desplegada") ;}
-
-    public void recuperar(Dron dron) {dron.setSonda(new SondaNoDesplegada());} //deberiamos poner un if?
-
-    private static void errorAlRotar() {
-        throw new IllegalStateException("No se puede rotar con la sonda desplegada");
+    public void recuperarSonda(Axiom axiom) {
+        axiom.setSonda(new SondaNoDesplegada());
     }
 }
