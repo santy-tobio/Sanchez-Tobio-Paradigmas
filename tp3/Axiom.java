@@ -5,10 +5,10 @@ import java.util.Queue;
 public class Axiom {
     private Brujula direccion = new BrujulaAlNorte();
     private Sonda sonda = new SondaNoDesplegada();
-    private Velocidad velocidad = new VelocidadNula();
+    private Velocidad velocidad = new Velocidad();
 
-    public void recibirMensaje(String mensaje) {
-        Comando.procesarComandos(mensaje, this);
+    public Axiom recibirMensaje(String mensaje) {
+        return Comando.procesarComandos(mensaje, this);
     }
 
     public void setVelocidad(Velocidad velocidad) {

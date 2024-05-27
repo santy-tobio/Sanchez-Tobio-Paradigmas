@@ -7,7 +7,7 @@ public class SondaDesplegada extends Sonda {
     }
 
     public void disminuirVelocidad(Axiom axiom) {
-        if(axiom.getVelocidad().velocidad == 1)
+        if(axiom.getVelocidad().getVelocidad()== 1)
         {
             throw new IllegalStateException("Error catastrofico");
         }

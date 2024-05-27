@@ -1,13 +1,14 @@
 package drones;
 
 public class ComandoRotarDerecha extends Comando {
-    private String comandoAEjecutar = "r";
+    private char comandoAEjecutar = 'r';
 
     public boolean ejecutaElComando(char comando) {
-        return this.comandoAEjecutar.equals(comando);
+        return this.comandoAEjecutar == comando;
     }
 
     public void ejecutarComando(Axiom axiom) {
-        axiom.getDireccion().girarDerecha();
+        axiom.getSonda().girarDerecha(axiom);
+        axiom.setDireccion(axiom.getDireccion().girarDerecha());
     }
 }

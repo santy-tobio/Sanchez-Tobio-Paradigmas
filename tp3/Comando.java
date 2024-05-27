@@ -8,6 +8,7 @@ public abstract class Comando {
 
     public static List<Comando> comandos = Arrays.asList(
             new ComandoIncrementarVelocidad(),
+            new ComandoDisminuirVelocidad(),
             new ComandoRotarDerecha(),
             new ComandoRotarIzquierda(),
             new ComandoDesplegar(),

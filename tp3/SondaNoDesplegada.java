@@ -1,21 +1,13 @@
 package drones;
 
 public class SondaNoDesplegada extends Sonda {
-    public void incrementarVelocidad(Axiom axiom) {
-        axiom.getVelocidad().incrementarVelocidad(axiom);
-    }
+    public void incrementarVelocidad(Axiom axiom) {}
 
-    public void disminuirVelocidad(Axiom axiom) {
-        axiom.getVelocidad().disminuirVelocidad(axiom);
-    }
+    public void disminuirVelocidad(Axiom axiom) {}
 
-    public void girarIzquierda(Axiom axiom) {
-        axiom.setDireccion(axiom.getDireccion().girarIzquierda());
-    }
+    public void girarIzquierda(Axiom axiom) {}
 
-    public void girarDerecha(Axiom axiom) {
-        axiom.setDireccion(axiom.getDireccion().girarDerecha());
-    }
+    public void girarDerecha(Axiom axiom) {}
 
     public void desplegarSonda(Axiom axiom) {
         if(axiom.getVelocidad().velocidad > 0){

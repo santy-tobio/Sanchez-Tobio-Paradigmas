@@ -8,84 +8,71 @@ import org.junit.jupiter.api.function.Executable;
 
 public class AxiomTest {
     @Test void testIncrementarVelocidad() {
-        Axiom axiom = new Axiom();
-        axiom.recibirMensaje("i");
-        assertEquals(1, axiom.getVelocidad());
+        assertEquals(1, new Axiom().recibirMensaje("i").getVelocidad().getVelocidad());
     }
 
     @Test void testDisminuirVelocidad() {
-        Axiom axiom = axiomEnMovimiento();
-        axiom.recibirMensaje("s");
-        assertEquals(0, axiom.getVelocidad());
+        assertEquals(0, axiomEnMovimiento().recibirMensaje("s").getVelocidad().getVelocidad());
     }
 
     @Test void testGirarIzquierda() {
-        Axiom axiom = new Axiom();
-        axiom.recibirMensaje("l");
-        assertTrue(axiom.getDireccion() instanceof BrujulaAlOeste);
+        assertTrue(new Axiom().recibirMensaje("l").getDireccion() instanceof BrujulaAlOeste);
     }
 
-    @Test void testRecibirTiraDeComandos
-
     @Test void testGirarDerecha() {
-        Axiom axiom = new Axiom();
-        axiom.recibirMensaje("r");
-        assertTrue(axiom.getDireccion() instanceof BrujulaAlEste);
+        assertTrue(new Axiom().recibirMensaje("r").getDireccion() instanceof BrujulaAlEste);
+    }
+
+    @Test void testRecibirTiraDeComandos() {
+        Axiom axiom = new Axiom().recibirMensaje("ilr");
+        assertTrue(axiom.getDireccion() instanceof BrujulaAlNorte);
+        assertTrue(axiom.getVelocidad().getVelocidad() == 1);
+    }
+
+    @Test void testGiroCompleto() {
+        assertTrue(new Axiom().recibirMensaje("llll").getDireccion() instanceof BrujulaAlNorte);
     }
 
     @Test void testDesplegarSondaEnMovimiento() {
-        Axiom axiom = axiomEnMovimiento();
-        axiom.recibirMensaje("d");
-        assertTrue(axiom.getSonda() instanceof SondaDesplegada);
+        assertTrue(axiomEnMovimiento().recibirMensaje("d").getSonda() instanceof SondaDesplegada);
     }
 
     @Test void testDesplegarSondaQuieto() {
-        Axiom axiom = new Axiom();
-        assertThrowsLike(() -> axiom.recibirMensaje("d"),
+        assertThrowsLike(() -> new Axiom().recibirMensaje("d"),
                 "La sonda solo se puede desplegar mientras se avanza");
     }
 
     @Test void testRecuperarSonda() {
-        Axiom axiom = axiomEnMovimiento();
-        axiom.recibirMensaje("d");
-        axiom.recibirMensaje("f");
-        assertTrue(axiom.getSonda() instanceof SondaNoDesplegada);
+        assertTrue(axiomEnMovimiento().recibirMensaje("df").getSonda() instanceof SondaNoDesplegada);
     }
 
-    @Test void testComandoVacio
+    @Test void testComandoVacio() {
+        assertThrowsLike(() -> new Axiom().recibirMensaje("Comando no reconocido"),
+                "Comando no reconocido");
+    }
 
     @Test void testComandoDesconocido() {
-        Axiom axiom = new Axiom();
-        assertThrowsLike(() -> axiom.recibirMensaje("x"),
-                "Comando desconocido");
+        assertThrowsLike(() -> new Axiom().recibirMensaje("Comando no reconocido"),
+                "Comando no reconocido");
     }
 
     @Test void testDesplegarSondaDesplgada() {
-        Axiom axiom = axiomEnMovimiento();
-        axiom.recibirMensaje("d");
-        assertThrowsLike(()->axiom.recibirMensaje("d"),
+        assertThrowsLike(()->axiomEnMovimiento().recibirMensaje("d").recibirMensaje("d"),
                 "La sonda ya está desplegada");
     }
 
     @Test void testDisminuirVelocidadMenorACero() {
-        Axiom axiom = new Axiom();
-        assertThrowsLike(()->axiom.recibirMensaje("s"),
-                "La velocidad no puede ser menor a 0");
+        assertThrowsLike(()->new Axiom().recibirMensaje("s"),
+                "No se puede disminuir la velocidad");
     }
 
     @Test void testGirarConSondaDesplegada() {
-        Axiom axiom = new Axiom();
-        axiom.recibirMensaje("i");
-        axiom.recibirMensaje("d");
-        assertThrowsLike(()->axiom.recibirMensaje("l"),
+        assertThrowsLike(()->axiomEnMovimiento().recibirMensaje("dl"),
                 "Error catastrofico");
     }
 
     @Test void testDetenerseConSondaDesplegada(){
-        Axiom axiom = new Axiom();
-        axiom.recibirMensaje("i");
-        axiom.recibirMensaje("d");
-        assertThrowsLike(()->axiom.recibirMensaje("s"),
+        assertThrowsLike(()-> axiomEnMovimiento().recibirMensaje("ds"),
                 "Error catastrofico");
     }
 

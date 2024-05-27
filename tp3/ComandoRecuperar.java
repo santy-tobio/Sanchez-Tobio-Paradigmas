@@ -1,10 +1,10 @@
 package drones;
 
 public class ComandoRecuperar extends Comando {
-    private String comandoAEjecutar = "f";
+    private char comandoAEjecutar = 'f';
 
     public boolean ejecutaElComando(char comando) {
-        return this.comandoAEjecutar.equals(comando);
+        return this.comandoAEjecutar == comando;
     }
 
     public void ejecutarComando(Axiom axiom) {
