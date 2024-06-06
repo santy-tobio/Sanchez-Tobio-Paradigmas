@@ -1,9 +1,10 @@
-public class SkipCard extends Card {
+package uno;
+
+public class DrawTwoCard extends Card {
 
     @Override
     public void play() {
         // Play the card
-
     }
 
     @Override

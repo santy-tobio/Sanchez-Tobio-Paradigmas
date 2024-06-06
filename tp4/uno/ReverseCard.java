@@ -1,4 +1,6 @@
-public class DrawTwoCard extends Card {
+package uno;
+
+public class ReverseCard extends Card {
 
     @Override
     public void play() {

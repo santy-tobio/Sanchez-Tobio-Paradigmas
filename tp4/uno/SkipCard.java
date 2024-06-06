@@ -1,14 +1,11 @@
-public class NumberCard extends Card {
+package uno;
 
-    private int number;
-
-    public NumberCard(int number) {
-        this.number = number;
-    }
+public class SkipCard extends Card {
 
     @Override
     public void play() {
         // Play the card
+
     }
 
     @Override

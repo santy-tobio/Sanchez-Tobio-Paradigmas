@@ -1,4 +1,6 @@
-public class ReverseCard extends Card {
+package uno;
+
+public class WildCard extends Card {
 
     @Override
     public void play() {
