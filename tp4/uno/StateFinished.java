@@ -1,33 +1,27 @@
 package uno;
 
-public class StateFinished extends GameStatus {
+public class StateFinished extends StatusUno {
     private String message;
 
-    public StateFinished(String message) {
-        this.message = message;
+    public StateFinished(UnoGame currentGame) {
+        super(currentGame);
     }
 
-    @Override
-    public GameStatus playPlayer1At(Game game, Card card) {
+    public void playPlayer1At(UnoGame game, Card card) {
         throw new RuntimeException("Game is finished");
     }
 
-    @Override
-    public GameStatus playPlayer2At(Game game, Card card) {
+    public void playPlayer2At(UnoGame game, Card card) {
         throw new RuntimeException("Game is finished");
     }
 
-    @Override
-    public boolean finished() {
+    public boolean isValid() {
+        return currentGame.isGameFinished();
+
+    }
+
+    public boolean isGameFinished(){
         return true;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    @Override
-    public GameStatus nextStatus() {
-        throw new RuntimeException("Game is finished");
-    }
 }

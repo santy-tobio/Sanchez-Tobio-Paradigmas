@@ -1,27 +1,28 @@
 package uno;
 
-public class StatePlayer1Playing extends GameStatus {
-    @Override
-    public GameStatus playPlayer1At(Game game, Card card) {
-        game.playCard(card);
-        if (game.checkWin()) {
-            return new StateFinished("Player 1 wins!");
-        }
-        return nextStatus();
+public class StatePlayer1Playing extends StatusUno {
+
+    public StatePlayer1Playing(UnoGame currentGame) {
+        super(currentGame);
     }
 
-    @Override
-    public GameStatus playPlayer2At(Game game, Card card) {
+    public void playPlayer1At(UnoGame game, Card card) {
+        game.playCard(card);
+        currentGame.modifyState(selectStatus());
+    }
+
+    public void playPlayer2At(UnoGame game, Card card) {
         throw new RuntimeException("It is not player 2's turn");
     }
 
-    @Override
-    public GameStatus nextStatus() {
-        return new StatePlayer2Playing();
+    public boolean isValid() {
+        return !currentGame.isGameFinished()
+                && !currentGame.isPlayingPlayer1()
+                && currentGame.isPlayingPlayer2();
     }
 
-    @Override
-    public boolean finished() {
-        return false;
+    public boolean isPlayingPlayer1() {
+        return true;
     }
+
 }
