@@ -1,13 +1,23 @@
 package uno;
 
 public abstract class Card {
+    protected String color;
+    protected int number;
 
-    public abstract void play();
+    public Card(String color, int number) {
+        this.color = color;
+        this.number = number;
+    }
 
-    public abstract void discard();
+    public String getColor() {
+        return color;
+    }
 
-    public abstract void draw();
+    public int getNumber() {
+        return number;
+    }
 
+    public abstract boolean canBePlayedOn(Card topCard);
 }
 
 
