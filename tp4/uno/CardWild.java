@@ -10,4 +10,8 @@ public class CardWild extends Card {
         return true;
     }
 
+    public void chooseColor(String color) {
+        this.color = color;
+    }
+
 }

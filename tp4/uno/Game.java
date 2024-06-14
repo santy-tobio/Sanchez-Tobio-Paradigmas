@@ -35,6 +35,20 @@ public class Game {
     public Game playCard(Card card) {
         if (card.canBePlayedOn(this.topCard)) {
             this.topCard = card;
+            if (card instanceof CardReverse) {
+                //reverse the order of play
+                this.gameStatus = this.gameStatus.nextStatus();
+            } else if (card instanceof CardSkip) {
+                //skip the next player
+                this.gameStatus = this.gameStatus.nextStatus().nextStatus();
+            }
+
+            //remove card from player's hand
+            for (List<Card> hand : playersCards.values()) {
+                if (hand.remove(card)) {
+                    break;
+                }
+            }
             return this;
         } else {
             throw new RuntimeException("Card cannot be played on the current top card");
