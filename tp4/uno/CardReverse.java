@@ -9,4 +9,8 @@ public class CardReverse extends Card {
     public boolean canBePlayedOn(Card topCard) {
         return this.color.equals(topCard.getColor());
     }
+
+    public void nextState(GameState currentState) {
+        currentState.setNext(currentState.getLeft());
+    }
 }

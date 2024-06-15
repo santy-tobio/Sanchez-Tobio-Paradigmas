@@ -10,4 +10,8 @@ public class CardSkip extends Card {
         return this.color.equals(topCard.getColor());
     }
 
+    public void nextState(GameState currentState) {
+        currentState.setNext(currentState.getRight().getRight());
+    }
+
 }

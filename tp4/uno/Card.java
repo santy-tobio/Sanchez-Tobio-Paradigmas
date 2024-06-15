@@ -17,6 +17,10 @@ public abstract class Card {
         return number;
     }
 
+    public void nextState(GameState currentState) {
+        currentState.setNext(currentState.getRight());
+    }
+
     public abstract boolean canBePlayedOn(Card topCard);
 }
 
