@@ -10,6 +10,10 @@ public class CardWild extends Card {
         return true;
     }
 
+    public void action(UnoGame game, String player) {
+        game.setCurrentState(game.getCurrentState().getNext());
+    }
+
     public void chooseColor(String color) {
         this.color = color;
     }

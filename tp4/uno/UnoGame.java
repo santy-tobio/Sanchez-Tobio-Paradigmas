@@ -11,13 +11,14 @@ public class UnoGame {
     private Card topCard;
     private GameState currentState;
 
+
     public UnoGame(List<Card> deck, List<String> players, int initialHandSize) {
         this.deck = deck;
         dealCards(players, initialHandSize);
         if (deck.isEmpty()) {
             throw new IllegalArgumentException("Not enough cards in the deck to start the game");
         }
-        this.topCard = deck.remove(0);
+        this.topCard = deck.removeFirst();
         createCircularStates(players);
     }
 
@@ -29,10 +30,21 @@ public class UnoGame {
             throw new RuntimeException("Card cannot be played on top card");
         }
 
-        currentState.playCard(card, player);
-        currentState = currentState.getNext();
         playersCards.get(player).remove(card);
+
+        if (playersCards.get(player).size() == 1 && !card.uno) {
+            drawCard(player);
+            drawCard(player);
+        }
+
+        currentState.playCard(card, player);
+        card.action(this, currentState.getNext().getPlayer());
         topCard = card;
+
+
+        if (playersCards.get(player).isEmpty()) {
+            throw new RuntimeException(player + " has won!");
+        }
     }
 
     public Card getTopCard() {
@@ -67,4 +79,23 @@ public class UnoGame {
                         .collect(Collectors.toList())
         ));
     }
+
+    public GameState getCurrentState() {
+        return currentState;
+    }
+
+    //set gamestate
+    public void setCurrentState(GameState currentState) {
+        this.currentState = currentState;
+    }
+
+    public List<Card> getDeck() {
+        return deck;
+    }
+
+    public void drawCard(String player) {
+        Card card = deck.removeFirst();
+        playersCards.get(player).add(card);
+    }
+
 }

@@ -40,6 +40,10 @@ public class GameState {
         return next;
     }
 
+    public String getPlayer() {
+        return player;
+    }
+
     public void playCard(Card card, String player) {
         if (!this.player.equals(player)) {
             throw new RuntimeException("It's not your turn");

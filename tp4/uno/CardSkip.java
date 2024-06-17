@@ -10,6 +10,12 @@ public class CardSkip extends Card {
         return this.color.equals(topCard.getColor());
     }
 
+    public void action(UnoGame game, String player) {
+        game.setCurrentState(game.getCurrentState().getNext());
+        game.setCurrentState(game.getCurrentState().getNext());
+
+    }
+
     public void nextState(GameState currentState) {
         currentState.setNext(currentState.getRight().getRight());
     }

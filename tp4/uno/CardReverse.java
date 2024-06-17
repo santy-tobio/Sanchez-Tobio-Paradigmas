@@ -10,6 +10,10 @@ public class CardReverse extends Card {
         return this.color.equals(topCard.getColor());
     }
 
+    public void action(UnoGame game, String player) {
+        game.getCurrentState().setNext(game.getCurrentState().getLeft());
+    }
+
     public void nextState(GameState currentState) {
         currentState.setNext(currentState.getLeft());
     }

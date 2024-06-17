@@ -3,6 +3,7 @@ package uno;
 public abstract class Card {
     protected String color;
     protected int number;
+    protected boolean uno = false;
 
     public Card(String color, int number) {
         this.color = color;
@@ -21,7 +22,14 @@ public abstract class Card {
         currentState.setNext(currentState.getRight());
     }
 
+    public Card gritoUno() {
+        this.uno = true;
+        return this;
+    }
+
     public abstract boolean canBePlayedOn(Card topCard);
+
+    public abstract void action(UnoGame game, String player);
 }
 
 
