@@ -61,9 +61,13 @@ public class UnoGame {
     }
 
     public void processCardAsReverse(){
-        this.currentState.SwitchLeftAndRight();
-        this.currentState.setNext(this.currentState.getRight());
-        this.currentState = this.currentState.getNext();
+        GameState first = this.currentState;
+        while(currentState.getPrevious() != first){
+            this.currentState.SwitchNextAndPrevious();
+            this.currentState = this.currentState.getNext();
+        }
+        this.currentState.SwitchNextAndPrevious();
+        this.currentState = this.currentState.getNext().getNext();
     }
 
     public void processCardAsSkip(){
@@ -92,8 +96,7 @@ public class UnoGame {
             GameState currentState = states.get(i);
             GameState nextState = states.get((i + 1) % states.size());
             GameState prevState = states.get((i - 1 + states.size()) % states.size());
-            currentState.setRight(nextState);
-            currentState.setLeft(prevState);
+            currentState.setPrevious(prevState);
             currentState.setNext(nextState);
         });
 

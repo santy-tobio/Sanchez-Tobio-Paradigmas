@@ -5,23 +5,18 @@ public class GameState {
     private UnoGame game;
     private String player;
     private GameState right;
-    private GameState left;
+    private GameState previous;
     private GameState next;
 
     public GameState(UnoGame game, String player) {
         this.game = game;
         this.player = player;
-        this.right = this;
-        this.left = this;
-        this.next = this.right;
+        this.previous = this;
+        this.next = this;
     }
 
-    public void setRight(GameState right) {
-        this.right = right;
-    }
-
-    public void setLeft(GameState left) {
-        this.left = left;
+    public void setPrevious(GameState previous) {
+        this.previous = previous;
     }
 
     public void setNext(GameState next) {
@@ -36,14 +31,15 @@ public class GameState {
         return player;
     }
 
-    public GameState getRight() {
-        return right;
+    public GameState getPrevious() {
+        return previous;
     }
 
-    public void SwitchLeftAndRight() {
-        GameState temp = this.left;
-        this.left = this.right;
-        this.right = temp;
+    public GameState SwitchNextAndPrevious() {
+        GameState temp = this.previous;
+        this.previous = this.next;
+        this.next = temp;
+        return this;
     }
 
     public void playCard(Card card, String player) {

@@ -10,20 +10,12 @@ public class UnoTest {
     private UnoGame game;
     private Card RedOn(int n){ return new CardNumber("red", n); }
     private Card BlueOn(int n){ return new CardNumber("blue", n); }
-    private Card GreenOn(int n){ return new CardNumber("green", n); }
-    private Card YellowOn(int n){ return new CardNumber("yellow", n); }
     private Card RedSkip(){ return new CardSkip("red"); }
     private Card BlueSkip(){ return new CardSkip("blue"); }
-    private Card GreenSkip(){ return new CardSkip("green"); }
-    private Card YellowSkip(){ return new CardSkip("yellow"); }
     private Card RedDrawTwo(){ return new CardDrawTwo("red"); }
     private Card BlueDrawTwo(){ return new CardDrawTwo("blue"); }
-    private Card GreenDrawTwo(){ return new CardDrawTwo("green"); }
-    private Card YellowDrawTwo(){ return new CardDrawTwo("yellow"); }
     private Card RedReverse(){ return new CardReverse("red"); }
     private Card BlueReverse(){ return new CardReverse("blue"); }
-    private Card GreenReverse(){ return new CardReverse("green"); }
-    private Card YellowReverse(){ return new CardReverse("yellow"); }
     private Card Wild(){ return new CardWild(); }
 
     private Card redZeroCard = RedOn(0);
@@ -35,7 +27,6 @@ public class UnoTest {
     private Card redSixCard = RedOn(6);
     private Card redSevenCard = RedOn(7);
     private Card redEightCard = RedOn(8);
-    private Card redNineCard = RedOn(9);
     private Card redSkipCard = RedSkip();
     private Card redDrawTwoCard = RedDrawTwo();
     private Card redReverseCard = RedReverse();
@@ -206,12 +197,10 @@ public class UnoTest {
     @Test public void ReverseCardReversedEqualsSameDirection(){
         UnoGame game = GameWithReverseCard();
         game.playCard(redReverseCard.gritoUno(), "a");
-        game.playCard(redFiveCard.gritoUno(), "c");
-        game.playCard(redThreeCard.gritoUno(), "b");
-        assertEquals(game.getTopCard(), redThreeCard);
+        game.playCard(blueReverseCard.gritoUno(), "c");
+        game.playCard(blueFiveCard, "a");
+        assertTrue(game.isGameOver());
     }
-
-    //@Test public void ReverseCardCanGetOnReverseCard{}
 
     private UnoGame simpleGame() {
         List<Card> deck = new ArrayList<>(Arrays.asList(
@@ -278,7 +267,7 @@ public class UnoTest {
     private UnoGame GameWithReverseCard(){
         List<Card> deck = new ArrayList<>(Arrays.asList(
                 redReverseCard,
-                redFiveCard,
+                blueFiveCard,
                 blueReverseCard,
                 redThreeCard,
                 redFourCard,
@@ -322,4 +311,3 @@ public class UnoTest {
 
 
 }
-
