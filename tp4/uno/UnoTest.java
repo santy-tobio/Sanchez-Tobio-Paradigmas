@@ -7,46 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 public class UnoTest {
-    private UnoGame game;
-    private Card RedOn(int n){ return new CardNumber("red", n); }
-    private Card BlueOn(int n){ return new CardNumber("blue", n); }
-    private Card RedSkip(){ return new CardSkip("red"); }
-    private Card BlueSkip(){ return new CardSkip("blue"); }
-    private Card RedDrawTwo(){ return new CardDrawTwo("red"); }
-    private Card BlueDrawTwo(){ return new CardDrawTwo("blue"); }
-    private Card RedReverse(){ return new CardReverse("red"); }
-    private Card BlueReverse(){ return new CardReverse("blue"); }
-    private Card Wild(){ return new CardWild(); }
-
-    private Card redZeroCard = RedOn(0);
-    private Card redOneCard = RedOn(1);
-    private Card redTwoCard = RedOn(2);
-    private Card redThreeCard = RedOn(3);
-    private Card redFourCard = RedOn(4);
-    private Card redFiveCard = RedOn(5);
-    private Card redSixCard = RedOn(6);
-    private Card redSevenCard = RedOn(7);
-    private Card redEightCard = RedOn(8);
-    private Card redSkipCard = RedSkip();
-    private Card redDrawTwoCard = RedDrawTwo();
-    private Card redReverseCard = RedReverse();
-
-    private Card blueZeroCard = BlueOn(0);
-    private Card blueOneCard = BlueOn(1);
-    private Card blueTwoCard = BlueOn(2);
-    private Card blueThreeCard = BlueOn(3);
-    private Card blueFourCard = BlueOn(4);
-    private Card blueFiveCard = BlueOn(5);
-    private Card blueSixCard = BlueOn(6);
-    private Card blueSevenCard = BlueOn(7);
-    private Card blueEightCard = BlueOn(8);
-    private Card blueNineCard = BlueOn(9);
-    private Card blueSkipCard = BlueSkip();
-    private Card blueDrawTwoCard = BlueDrawTwo();
-    private Card blueReverseCard = BlueReverse();
-
-    private Card wildCard = Wild();
-
     @Test public void testGameInitialization() {assertEquals(simpleGame().getTopCard(), redZeroCard);}
 
 
@@ -201,6 +161,47 @@ public class UnoTest {
         game.playCard(blueFiveCard, "a");
         assertTrue(game.isGameOver());
     }
+
+    private UnoGame game;
+    private Card RedOn(int n){ return new CardNumber("red", n); }
+    private Card BlueOn(int n){ return new CardNumber("blue", n); }
+    private Card RedSkip(){ return new CardSkip("red"); }
+    private Card BlueSkip(){ return new CardSkip("blue"); }
+    private Card RedDrawTwo(){ return new CardDrawTwo("red"); }
+    private Card BlueDrawTwo(){ return new CardDrawTwo("blue"); }
+    private Card RedReverse(){ return new CardReverse("red"); }
+    private Card BlueReverse(){ return new CardReverse("blue"); }
+    private Card Wild(){ return new CardWild(); }
+
+    private Card redZeroCard = RedOn(0);
+    private Card redOneCard = RedOn(1);
+    private Card redTwoCard = RedOn(2);
+    private Card redThreeCard = RedOn(3);
+    private Card redFourCard = RedOn(4);
+    private Card redFiveCard = RedOn(5);
+    private Card redSixCard = RedOn(6);
+    private Card redSevenCard = RedOn(7);
+    private Card redEightCard = RedOn(8);
+    private Card redSkipCard = RedSkip();
+    private Card redDrawTwoCard = RedDrawTwo();
+    private Card redReverseCard = RedReverse();
+
+    private Card blueZeroCard = BlueOn(0);
+    private Card blueOneCard = BlueOn(1);
+    private Card blueTwoCard = BlueOn(2);
+    private Card blueThreeCard = BlueOn(3);
+    private Card blueFourCard = BlueOn(4);
+    private Card blueFiveCard = BlueOn(5);
+    private Card blueSixCard = BlueOn(6);
+    private Card blueSevenCard = BlueOn(7);
+    private Card blueEightCard = BlueOn(8);
+    private Card blueNineCard = BlueOn(9);
+    private Card blueSkipCard = BlueSkip();
+    private Card blueDrawTwoCard = BlueDrawTwo();
+    private Card blueReverseCard = BlueReverse();
+
+    private Card wildCard = Wild();
+
 
     private UnoGame simpleGame() {
         List<Card> deck = new ArrayList<>(Arrays.asList(
