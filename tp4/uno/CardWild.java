@@ -1,21 +1,38 @@
 package uno;
 
 public class CardWild extends Card {
+    protected String color;
 
-    public CardWild() {
-        super("", -1); // Wild cards have no color or number
+    @Override
+    public boolean likesColor(String color) {
+        return true;
+    }
+
+    @Override
+    public boolean likesNumber(int number) {
+        return true;
     }
 
     public boolean canBePlayedOn(Card topCard) {
         return true;
     }
 
-    public void action(UnoGame game, String player) {
-        game.setCurrentState(game.getCurrentState().getNext());
+    @Override
+    public void processCard(UnoGame game) {
+        game.processCardAsWild();
     }
 
-    public void chooseColor(String color) {
+    public Card chooseColor(String color) {
         this.color = color;
+        return this;
     }
-
 }
+
+
+
+
+
+
+
+
+

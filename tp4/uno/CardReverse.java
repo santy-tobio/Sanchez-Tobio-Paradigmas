@@ -1,20 +1,33 @@
 package uno;
 
 public class CardReverse extends Card {
+    protected String color;
 
     public CardReverse(String color) {
-        super(color, -4); // -4 denotes a reverse card
+        this.color = color;
+    }
+
+    @Override
+    public boolean likesColor(String color) {
+        return this.color.equals(color);
+    }
+
+    @Override
+    public boolean likesNumber(int number) {
+        return false;
     }
 
     public boolean canBePlayedOn(Card topCard) {
-        return this.color.equals(topCard.getColor());
+        return topCard.likesColor(this.color) || canGetOnTopOfReverseCard();
     }
 
-    public void action(UnoGame game, String player) {
-        game.getCurrentState().setNext(game.getCurrentState().getLeft());
+    @Override
+    public void processCard(UnoGame game) {
+        game.processCardAsReverse();
     }
 
-    public void nextState(GameState currentState) {
-        currentState.setNext(currentState.getLeft());
+    public boolean canGetOnTopOfReverseCard(){
+        return true;
     }
+
 }

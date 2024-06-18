@@ -1,18 +1,33 @@
 package uno;
 
 public class CardDrawTwo extends Card {
+    protected String color;
 
     public CardDrawTwo(String color) {
-        super(color, -2); // -2 denotes a draw two card
+        this.color = color;
     }
+
+    @Override
+    public boolean likesColor(String color) {
+        return this.color.equals(color);
+    }
+
+    @Override
+    public boolean likesNumber(int number) {
+        return false;
+    }
+
 
     public boolean canBePlayedOn(Card topCard) {
-        return this.color.equals(topCard.getColor());
+        return topCard.likesColor(this.color) || topCard.canGetOnTopOfDrawTwoCard();
     }
 
-    public void action(UnoGame game, String player) {
-        game.setCurrentState(game.getCurrentState().getNext());
-        game.drawCard(player);
-        game.drawCard(player);
+    @Override
+    public void processCard(UnoGame game) {
+        game.processCardAsDrawTwo();
+    }
+
+    public boolean canGetOnTopOfDrawTwoCard(){
+        return true;
     }
 }

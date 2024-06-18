@@ -28,14 +28,6 @@ public class GameState {
         this.next = next;
     }
 
-    public GameState getRight() {
-        return right;
-    }
-
-    public GameState getLeft() {
-        return left;
-    }
-
     public GameState getNext() {
         return next;
     }
@@ -44,10 +36,20 @@ public class GameState {
         return player;
     }
 
+    public GameState getRight() {
+        return right;
+    }
+
+    public void SwitchLeftAndRight() {
+        GameState temp = this.left;
+        this.left = this.right;
+        this.right = temp;
+    }
+
     public void playCard(Card card, String player) {
         if (!this.player.equals(player)) {
             throw new RuntimeException("It's not your turn");
         }
-        card.nextState(this);
+        card.processCard(game);
     }
 }

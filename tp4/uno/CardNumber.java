@@ -1,17 +1,30 @@
 package uno;
 
 public class CardNumber extends Card {
+    protected String color;
+    protected int number;
+
     public CardNumber(String color, int number) {
-        super(color, number);
+        this.color = color;
+        this.number = number;
+    }
+
+    @Override
+    public boolean likesColor(String color) {
+        return this.color.equals(color);
+    }
+
+    @Override
+    public boolean likesNumber(int number) {
+        return this.number == number;
     }
 
     public boolean canBePlayedOn(Card topCard) {
-        return this.color.equals(topCard.getColor()) || this.number == topCard.getNumber();
+        return topCard.likesColor(this.color)|| topCard.likesNumber(this.number);
     }
 
-    public void action(UnoGame game, String player) {
-        game.setCurrentState(game.getCurrentState().getNext());
-        //game.setCurrentState(game.getCurrentState().getNext());
+    public void processCard(UnoGame game) {
+        game.processCardAsNumber();
     }
 }
 

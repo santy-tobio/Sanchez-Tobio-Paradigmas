@@ -1,25 +1,31 @@
 package uno;
 
 public abstract class Card {
-    protected String color;
-    protected int number;
+
     protected boolean uno = false;
 
-    public Card(String color, int number) {
-        this.color = color;
-        this.number = number;
+    public abstract boolean likesColor(String color);
+
+    public abstract boolean likesNumber(int number);
+
+    public abstract boolean canBePlayedOn(Card topCard);
+
+    public abstract void processCard(UnoGame game);
+
+    public Card chooseColor(String color) {
+        return this;
     }
 
-    public String getColor() {
-        return color;
+    public boolean canGetOnTopOfSkipCard() {
+        return false;
     }
 
-    public int getNumber() {
-        return number;
+    public boolean canGetOnTopOfReverseCard() {
+        return false;
     }
 
-    public void nextState(GameState currentState) {
-        currentState.setNext(currentState.getRight());
+    public boolean canGetOnTopOfDrawTwoCard() {
+        return false;
     }
 
     public Card gritoUno() {
@@ -27,10 +33,5 @@ public abstract class Card {
         return this;
     }
 
-    public abstract boolean canBePlayedOn(Card topCard);
-
-    public abstract void action(UnoGame game, String player);
 }
-
-
 

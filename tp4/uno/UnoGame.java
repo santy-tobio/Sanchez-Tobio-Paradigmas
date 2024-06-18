@@ -30,25 +30,57 @@ public class UnoGame {
             throw new RuntimeException("Card cannot be played on top card");
         }
 
-        playersCards.get(player).remove(card);
-
-        if (playersCards.get(player).size() == 1 && !card.uno) {
+        if (playersCards.get(player).size() == 2 && !card.uno) {
             drawCard(player);
             drawCard(player);
         }
 
         currentState.playCard(card, player);
-        card.action(this, currentState.getNext().getPlayer());
         topCard = card;
 
-
-        if (playersCards.get(player).isEmpty()) {
-            throw new RuntimeException(player + " has won!");
+        if(isGameOver()){
+            throw new RuntimeException("Game is over");
         }
+
+        playersCards.get(player).remove(card);
     }
 
     public Card getTopCard() {
         return topCard;
+    }
+
+    public void processCardAsDrawTwo(){
+        this.currentState = this.currentState.getNext();
+        drawCard(this.currentState.getPlayer());
+        drawCard(this.currentState.getPlayer());
+        this.currentState = this.currentState.getNext();
+    }
+
+    public void processCardAsNumber(){
+        this.currentState = this.currentState.getNext();
+    }
+
+    public void processCardAsReverse(){
+        this.currentState.SwitchLeftAndRight();
+        this.currentState.setNext(this.currentState.getRight());
+        this.currentState = this.currentState.getNext();
+    }
+
+    public void processCardAsSkip(){
+        this.currentState = this.currentState.getNext().getNext();
+    }
+
+    public void processCardAsWild(){
+        this.currentState = this.currentState.getNext();
+    }
+
+    public boolean isGameOver() {
+        return playersCards.values().stream().anyMatch(List::isEmpty);
+    }
+
+    public void drawCard(String player) {
+        Card card = deck.removeFirst();
+        playersCards.get(player).add(card);
     }
 
     private void createCircularStates(List<String> players) {
@@ -62,6 +94,7 @@ public class UnoGame {
             GameState prevState = states.get((i - 1 + states.size()) % states.size());
             currentState.setRight(nextState);
             currentState.setLeft(prevState);
+            currentState.setNext(nextState);
         });
 
         this.currentState = states.get(0);
@@ -78,24 +111,6 @@ public class UnoGame {
                         .mapToObj(i -> deck.remove(0))
                         .collect(Collectors.toList())
         ));
-    }
-
-    public GameState getCurrentState() {
-        return currentState;
-    }
-
-    //set gamestate
-    public void setCurrentState(GameState currentState) {
-        this.currentState = currentState;
-    }
-
-    public List<Card> getDeck() {
-        return deck;
-    }
-
-    public void drawCard(String player) {
-        Card card = deck.removeFirst();
-        playersCards.get(player).add(card);
     }
 
 }

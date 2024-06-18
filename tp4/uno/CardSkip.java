@@ -1,23 +1,32 @@
 package uno;
 
 public class CardSkip extends Card {
+    protected String color;
 
     public CardSkip(String color) {
-        super(color, -3); // -3 denotes a skip card
+        this.color = color;
+    }
+
+    @Override
+    public boolean likesColor(String color) {
+        return this.color.equals(color);
+    }
+
+    @Override
+    public boolean likesNumber(int number) {
+        return false;
     }
 
     public boolean canBePlayedOn(Card topCard) {
-        return this.color.equals(topCard.getColor());
+        return topCard.likesColor(this.color) || topCard.canGetOnTopOfSkipCard();
     }
 
-    public void action(UnoGame game, String player) {
-        game.setCurrentState(game.getCurrentState().getNext());
-        game.setCurrentState(game.getCurrentState().getNext());
-
+    @Override
+    public void processCard(UnoGame game) {
+        game.processCardAsSkip();
     }
 
-    public void nextState(GameState currentState) {
-        currentState.setNext(currentState.getRight().getRight());
+    public boolean canGetOnTopOfSkipCard(){
+        return true;
     }
-
 }
